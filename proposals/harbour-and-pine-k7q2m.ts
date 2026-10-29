@@ -1,80 +1,179 @@
 import type { Proposal } from "@/lib/types";
 
-// Example proposal showing every slide type. Copy patterns from here.
+// Example proposal (fictional client) showing every slide type. Copy patterns from here.
 const proposal: Proposal = {
   client: "Harbour & Pine",
-  title: "A new website and local search plan",
+  title: "Strategy Proposal",
   date: "2026-11-03",
   preparedBy: "Mesmerise",
-  accent: "#0f6b5c",
   slides: [
-    {
-      type: "cover",
-      title: "A new website and local search plan",
-      subtitle: "Getting more Saturday-morning regulars through the door at both bakeries.",
-    },
-    {
-      type: "statement",
-      text: "Most of your customers decide where to buy bread on their phone, within a kilometre of your shop.",
-      detail: "So the plan below is built around local search and a site that loads fast on a phone.",
-    },
+    { type: "cover" },
+    { type: "contents" },
     {
       type: "text",
-      heading: "Where things stand",
-      paragraphs: [
-        "Your current site was built in 2019 and takes around six seconds to load on mobile. Your Google Business profiles are missing opening hours for public holidays and haven’t had new photos in over a year.",
-        "None of this is unusual, and all of it is fixable in the first month.",
+      heading: "*Thank you.*",
+      greeting: "Hi Sam,",
+      intro: "In this deck you’ll find:",
+      bullets: [
+        "A summary of where Harbour & Pine sits today and where the opportunity is",
+        "An honest audit of your website and local search presence",
+        "A phased growth plan for both bakeries",
+        "A clear investment overview with defined deliverables at each stage",
+      ],
+      outro: "You told us weekends are full but weekdays are quiet. Our job is to fill the weekdays without discounting.",
+      signOff: "Regards,\nPetar",
+    },
+    {
+      type: "columns",
+      heading: "Summary",
+      columns: [
+        {
+          heading: "Challenges",
+          bullets: [
+            "Weekday foot traffic is half of the weekend’s",
+            "The website takes six seconds to load on a phone",
+            "Google profiles are missing holiday hours and recent photos",
+          ],
+        },
+        {
+          heading: "Goals & Success Metrics",
+          bullets: ["Grow weekday sales by 30% this financial year", "Double online pre-orders", "Reach a 4.8 Google rating at both locations"],
+        },
+        {
+          heading: "Strategy Overview",
+          bullets: ["Rebuild the website around pre-orders", "Fix local search first", "Run weekday-only Meta offers once tracking is live"],
+        },
+      ],
+    },
+
+    { type: "section", title: "About *Mesmerise*" },
+    { type: "stats" },
+    { type: "logos" },
+    { type: "team" },
+    { type: "process" },
+
+    { type: "section", title: "Case Studies" },
+    { type: "case-study", use: "moon-bg" },
+    { type: "testimonial", use: "moon-bg" },
+    { type: "testimonial", use: "able-foods" },
+
+    { type: "section", title: "The Growth Strategy" },
+    {
+      type: "table",
+      heading: "Summary Of Focus Areas",
+      columns: ["Problems you shared", "Goals you want to hit", "Actions we propose"],
+      rows: [
+        ["Weekdays are quiet", "Grow weekday sales by 30%", "Weekday-only offers on Meta, aimed within 3 km of each shop"],
+        ["The website is slow and hard to order from", "Double online pre-orders", "A fast new site built around pre-orders"],
+        ["Google profiles are out of date", "Reach a 4.8 rating", "Monthly photo updates and a review request at checkout"],
+      ],
+    },
+
+    {
+      type: "section",
+      title: "*Local Search* Audit",
+      subtitle: "Analysis & Recommendations",
+      link: { label: "View the keyword research", href: "https://docs.google.com/" },
+    },
+    {
+      type: "audit",
+      heading: "*Local Search* Audit & Recommendations.",
+      images: [],
+      takeaways: [
+        "Both profiles rank in the top three for “bakery near me”, but neither shows holiday hours, which costs calls on long weekends",
+        "The newest photo is fourteen months old. Profiles with recent photos get noticeably more direction requests",
       ],
     },
     {
-      type: "points",
-      heading: "What we’ll do",
-      intro: "Three pieces of work, done in order so each one supports the next.",
-      points: [
-        { title: "Rebuild the website", body: "A fast, simple site with your menu, both locations and online pre-orders." },
-        { title: "Fix local search", body: "Complete and maintain both Google Business profiles, with fresh photos monthly." },
-        { title: "Report monthly", body: "One page each month: visits, calls, direction requests and pre-orders." },
+      type: "scale",
+      heading: "Focus Areas, *Next 12 Months*",
+      levels: [
+        { label: "Future-proof", title: "Booked out all week", bullets: ["Weekday pre-orders as steady as weekends", "Regulars coming back through email, not discounts"] },
+        { label: "Growing", title: "Foundations in place", bullets: ["A website that takes orders", "Tracking live on every channel"] },
+        { label: "Vulnerable", title: "Relying on weekend walk-ins", bullets: ["No way to fill a quiet Tuesday", "Online orders lost to a slow site"] },
       ],
     },
     {
-      type: "timeline",
-      heading: "Timeline",
-      steps: [
-        { when: "Weeks 1–2", title: "Discovery and design", body: "Workshop with you, then homepage and menu designs to review." },
-        { when: "Weeks 3–5", title: "Build", body: "Development, content entry and pre-order setup." },
-        { when: "Week 6", title: "Launch", body: "Go live, redirect old pages and update Google profiles." },
-        { when: "Ongoing", title: "Local search and reporting" },
+      type: "table",
+      heading: "Focus Areas, *December–May*",
+      columns: ["Months", "Focus areas", "What needs to be done", "The problems this solves"],
+      rows: [
+        [
+          "Phase 1\nMonths 1–3",
+          ["Website rebuild", "Google Business profiles"],
+          ["Design and build with pre-orders", "Holiday hours, photos and review prompts"],
+          ["Orders lost to a slow site", "Missed calls on long weekends"],
+        ],
+        ["Phase 2\nMonths 3–6", ["Meta ads"], ["Weekday offers within 3 km of each shop"], ["Quiet weekdays"]],
       ],
     },
+    {
+      type: "columns",
+      heading: "*Additional Thoughts* For Consideration",
+      intro: "The foundation comes first, then ads get switched on once the site can take orders.",
+      columns: [
+        { heading: "Keep In Mind", bullets: ["Your regulars already love you. The plan is about reaching their neighbours"] },
+        { heading: "Some Risks", bullets: ["The first two months are build time, so results start in month three"] },
+        { heading: "Summary Of Recommendations", bullets: ["Start with the website and Google profiles", "Review together at month six"] },
+      ],
+    },
+
+    { type: "section", title: "*Investment*", subtitle: "Analysis & Recommendations" },
     {
       type: "pricing",
-      heading: "Investment",
+      heading: "Investment, *Next 12 Months*",
+      points: [
+        "The website is the priority in months 1 to 3. Everything else is built on it",
+        "Meta ads start once the site and tracking are live",
+      ],
       items: [
-        { name: "Website design and build", description: "Including pre-orders and two rounds of revisions", price: 9500 },
-        { name: "Google Business setup", description: "Both locations", price: 1200 },
-        { name: "Local search and reporting", description: "First three months", price: 2400 },
-      ],
-      note: "50% deposit to begin, balance on launch. Ongoing local search is $800 a month after the first three months.",
-    },
-    {
-      type: "team",
-      heading: "Who you’ll work with",
-      people: [
-        { name: "Alex Example", role: "Account lead", bio: "Your main contact for the whole project." },
-        { name: "Sam Example", role: "Design and development", bio: "Designs and builds the site." },
+        { name: "Website design and build", price: [5000, 10000] },
+        { name: "Google Business setup, both locations", price: 1200 },
+        { name: "Meta ads management", price: 1500, per: "month" },
       ],
     },
     {
-      type: "quote",
-      quote: "Online orders doubled in the first quarter after launch, and the phone finally stopped ringing to ask what time we close.",
-      attribution: "Owner, a previous hospitality client",
+      type: "options",
+      heading: "Website Build – You Have *Options*",
+      options: [
+        {
+          name: "Professional",
+          price: 5000,
+          tagline: "A fast, clean site with your menu and both locations",
+          features: ["Mobile optimised", "Menu and opening hours you can edit", "Google Analytics set up"],
+        },
+        {
+          name: "Premium",
+          price: 10000,
+          tagline: "Everything in Professional, plus online pre-orders",
+          features: ["All inclusions from Professional", "Pre-orders with pick-up times", "Conversion tracking for Meta"],
+        },
+      ],
     },
     {
-      type: "next-steps",
-      heading: "Next steps",
-      steps: ["Reply to confirm you’d like to go ahead", "We send the agreement and deposit invoice", "Book the discovery workshop"],
-      contact: { name: "Alex Example", email: "hello@mesmeriseco.com" },
+      type: "budget",
+      heading: "*Investment* Allocation (Over 12 Months)",
+      total: 30000,
+      items: [
+        { label: "Website", amount: 10000 },
+        { label: "Meta ads", amount: 12000 },
+        { label: "Google Business", amount: 1200 },
+        { label: "Email flows", amount: 3000 },
+      ],
+      takeaways: ["Most of the budget goes to the website and ads, because that’s where weekday orders will come from"],
     },
+    {
+      type: "options",
+      heading: "Stay Ahead Of The Curve *(Add-ons For Growth)*",
+      options: [
+        { name: "Email Nurture Sequences", price: 3000, from: true },
+        { name: "Photo Shoot", price: 1500, from: true },
+        { name: "Backlink Building", price: 2000, from: true },
+      ],
+    },
+
+    { type: "next-steps" },
+    { type: "closing" },
   ],
 };
 

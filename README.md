@@ -13,7 +13,31 @@ Then edit the new file (or ask your AI tool to; it will follow `CLAUDE.md`).
 Commit on a branch, open a pull request, and check the Vercel preview link.
 Once it's merged, the proposal is live at `https://strategy.mesmeriseco.com/<slug>`.
 
-Viewers can use the arrow keys to move between slides, and "Save as PDF" prints one slide per page.
+Viewers move between slides with the arrow keys, the on-screen arrows, or by swiping on a phone.
+Each slide has its own link (e.g. `/<slug>#7`), and "Save as PDF" prints one slide per page.
+
+## Slide types
+Every proposal is built from these. Most decks use them in roughly this order (see `proposals/_template.ts`).
+
+| Type | Use it for |
+| --- | --- |
+| `cover` | Opening slide with the client name |
+| `contents` | Numbered list, built automatically from the `section` slides |
+| `section` | Big title that opens each part (About, Website Audit, Investment…) |
+| `text` | The thank-you letter, or any note with bullets |
+| `columns` | Summary, Additional Thoughts: 2–4 ticked columns |
+| `stats` · `logos` · `team` · `process` | Standard Mesmerise slides, filled in automatically |
+| `case-study` · `testimonial` | Use a saved one (`use: "flo-landscapes"`) or write a new one |
+| `table` | Focus areas summary, phase-by-phase plan |
+| `audit` | Screenshots with key takeaways |
+| `scale` | Vulnerable → Growing → Future-proof |
+| `pricing` | Numbered priorities beside a price table |
+| `options` | Website tiers, or add-ons (leave out `features` for compact cards) |
+| `budget` | Annual budget with bar chart |
+| `next-steps` · `closing` | Standard ending, filled in automatically |
+
+Shared content (results, logos, team, case studies, testimonials) lives in `lib/defaults.ts`.
+Change it there and every proposal picks it up.
 
 ## One-time setup
 1. **Create the repo:** `gh repo create mesmerise/strategy-decks --private --source=. --push`

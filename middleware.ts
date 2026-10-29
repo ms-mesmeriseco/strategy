@@ -20,5 +20,6 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/|api/unlock|unlock|robots.txt|favicon.ico).+)"],
+  // Fonts stay public so the unlock page can use them; images stay behind the gate.
+  matcher: ["/((?!_next/|api/unlock|unlock|fonts/|robots.txt|favicon.ico).+)"],
 };
