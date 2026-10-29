@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap");
+
+/* ---------- Brand tokens: change these to rebrand every deck ---------- */
+:root {
+  --paper: #f7f8f6;
+  --ink: #1d2633;
+  --muted: #5e6876;
+  --rule: #d9dde2;
+  --accent: #3346e8;
+  --on-accent: #ffffff;
+
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+
+  --pad: clamp(1.5rem, 6vw, 6rem);
+  --measure: 62ch;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-snap-type: y proximity; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.125rem/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 2.5rem; }
+h3 { font-size: 1.25rem; font-weight: 500; line-height: 1.25; }
+p { margin: 0; }
+a { color: inherit; text-underline-offset: 0.2em; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- Slides ---------- */
+.slide {
+  min-height: 100dvh;
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+  border-bottom: 1px solid var(--rule);
+}
+.slide__inner { width: 100%; max-width: 72rem; margin: 0 auto; }
+
+/* The cover is the one loud moment in the deck. */
+.slide--cover { background: var(--accent); color: var(--on-accent); border: 0; justify-content: flex-end; }
+.cover__client {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 13vw, 11rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+  overflow-wrap: anywhere;
+}
+.cover__title { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 500; line-height: 1.2; max-width: 30ch; }
+.cover__subtitle { margin-top: 1rem; max-width: var(--measure); opacity: 0.85; }
+.cover__meta { margin-top: 4rem; font-size: 0.95rem; opacity: 0.8; }
+
+.slide--statement { background: var(--ink); color: var(--paper); border: 0; }
+.statement__text {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.statement__detail { margin-top: 2rem; max-width: var(--measure); opacity: 0.75; }
+
+.prose { display: grid; gap: 1.1em; max-width: var(--measure); }
+.lede { max-width: var(--measure); color: var(--muted); margin: -1.5rem 0 2.5rem; font-size: 1.25rem; }
+
+.points { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 2.5rem 3rem; }
+.point { border-top: 2px solid var(--ink); padding-top: 1rem; }
+.point p { margin-top: 0.5rem; color: var(--muted); }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; max-width: 56rem; }
+.timeline li { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem; padding: 1.25rem 0; border-top: 1px solid var(--rule); }
+.timeline li:last-child { border-bottom: 1px solid var(--rule); }
+.timeline__when { color: var(--accent); font-weight: 600; }
+.timeline p { margin-top: 0.35rem; color: var(--muted); }
+@media (max-width: 40rem) { .timeline li { grid-template-columns: 1fr; gap: 0.25rem; } }
+
+.table-wrap { overflow-x: auto; max-width: 56rem; }
+.pricing { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.pricing th, .pricing td { padding: 1rem 0; border-top: 1px solid var(--rule); vertical-align: top; }
+.pricing th { text-align: left; font-weight: 600; padding-right: 2rem; }
+.pricing th span { display: block; font-weight: 400; color: var(--muted); margin-top: 0.2rem; }
+.pricing td { text-align: right; white-space: nowrap; }
+.pricing tfoot th, .pricing tfoot td { border-top: 2px solid var(--ink); font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; }
+.pricing tfoot td span { font-family: var(--font-body); font-size: 1rem; font-weight: 400; color: var(--muted); }
+.note { margin-top: 1.5rem; color: var(--muted); font-size: 0.95rem; max-width: var(--measure); }
+
+.team { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 2.5rem; }
+.team__role { color: var(--accent); margin: 0.25rem 0 0.75rem; }
+.team p:not(.team__role) { color: var(--muted); }
+
+.quote { margin: 0; max-width: 48rem; }
+.quote blockquote { margin: 0; font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.75rem); line-height: 1.2; letter-spacing: -0.01em; }
+.quote figcaption { margin-top: 1.5rem; color: var(--muted); }
+
+.steps { margin: 0 0 3rem; padding-left: 1.5rem; display: grid; gap: 0.75rem; max-width: var(--measure); font-size: 1.25rem; }
+.steps li::marker { color: var(--accent); font-weight: 600; }
+.contact { border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+.contact p:first-child { font-weight: 600; }
+
+/* ---------- Controls ---------- */
+.controls {
+  position: fixed; right: 1rem; bottom: 1rem;
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.4rem 0.4rem 0.4rem 0.9rem;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 999px;
+  font-size: 0.875rem; font-variant-numeric: tabular-nums;
+}
+.controls button {
+  font: inherit; cursor: pointer;
+  background: var(--ink); color: var(--paper);
+  border: 0; border-radius: 999px; padding: 0.35rem 0.9rem;
+}
+
+@media (max-width: 40rem) {
+  .slide { padding-bottom: 5.5rem; }
+  .controls button { display: none; }
+  .controls { padding: 0.4rem 0.9rem; }
+}
+
+/* ---------- Simple pages (home, unlock) ---------- */
+.plain { min-height: 100dvh; display: grid; place-items: center; padding: var(--pad); }
+.plain form { display: grid; gap: 0.75rem; width: min(22rem, 100%); }
+.plain input { font: inherit; padding: 0.7rem 0.9rem; border: 1px solid var(--rule); border-radius: 6px; background: #fff; color: var(--ink); }
+.plain button { font: inherit; padding: 0.7rem; border: 0; border-radius: 6px; background: var(--ink); color: var(--paper); cursor: pointer; }
+.plain .error { color: #b3261e; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---------- Print / Save as PDF: one slide per landscape page ---------- */
+@page { size: 297mm 167mm; margin: 0; }
+@media print {
+  html { scroll-snap-type: none; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .controls { display: none; }
+  .slide { min-height: 0; height: 167mm; break-after: page; border: 0; padding: 14mm 18mm; overflow: hidden; }
+  .slide:last-child { break-after: auto; }
+}
