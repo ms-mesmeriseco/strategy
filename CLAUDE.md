@@ -18,6 +18,12 @@ editing it are mostly not developers. Keep changes small and predictable.
    - Delete slides the proposal doesn't need. Don't leave placeholder text in.
 3. Run `npm run build` and fix any errors before committing.
 
+## Proposals from Claude chat
+Most proposals are written to Sanity (project `wpr5jlmc`, private dataset `proposals`) from a
+claude.ai chat using the skill in `claude-skill/mesmerise-proposals/SKILL.md`; they're never
+files in this repo. `lib/validate.ts` checks them before they render. If you add or change a
+slide type or a saved case study/testimonial, update `lib/validate.ts` and `SKILL.md` too.
+
 ## Standard content
 `lib/defaults.ts` holds the content shared by every proposal: results, client logos,
 team, process, next steps, sign-off, case studies and testimonials. Change it only when

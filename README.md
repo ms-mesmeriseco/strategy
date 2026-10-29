@@ -1,9 +1,18 @@
 # strategy.mesmeriseco.com
 
-Client proposal decks. Each proposal is one file in `proposals/`, rendered with
-shared slide templates and hosted on Vercel.
+Client proposal decks, rendered with shared slide templates and hosted on Vercel.
 
-## Make a proposal
+## Make a proposal (no code)
+In a claude.ai chat with the **Mesmerise proposals** skill and the **Sanity** connector on, say
+"Make a proposal for <client>" and paste your call notes and pricing. Claude saves it to
+Sanity and replies with the link, e.g. `https://strategy.mesmeriseco.com/watt-utilities-x7k2p`.
+It's live within a minute. To change it, keep chatting ("make the website Premium tier",
+"swap the Moon BG case study for Frame of Mind").
+
+If the link shows "This proposal needs a few fixes", paste that list back into the chat.
+
+## Make a proposal (in code)
+Proposals can also be files in `proposals/`, which is how the example deck works.
 ```bash
 npm install
 npm run new -- "Client Name"   # creates proposals/client-name-xxxxx.ts
@@ -50,6 +59,24 @@ Change it there and every proposal picks it up.
    Every proposal will then ask for it once and remember it for 30 days. Without it,
    links are open but unguessable.
 5. **Protect main:** In GitHub, go to Settings → Branches and require a pull request before merging to `main`.
+
+### Proposals from Claude chat (Sanity)
+6. **Private dataset:** at sanity.io/manage → Mesmerise project (`wpr5jlmc`) → Datasets, add a
+   dataset called `proposals` with visibility **Private**. (CLI: `npx sanity dataset create proposals --visibility private`.)
+   It must be private: a public dataset would let anyone list every client's pricing.
+7. **Read token:** in the same project, go to API → Tokens and add a **Viewer** token. In Vercel,
+   set it as `SANITY_READ_TOKEN` and redeploy.
+8. **Teammates:** invite each person to the Sanity project with a role that can edit documents.
+   On Sanity's standard plans this also lets them edit the website's `production` dataset, so the
+   skill tells Claude to only ever write to `proposals`.
+9. **Skill:** run `npm run skill` to make `mesmerise-proposals-skill.zip`, then upload it in
+   claude.ai → Settings → Capabilities → Skills. An org admin can share it with the whole team.
+   Re-upload it whenever `claude-skill/mesmerise-proposals/SKILL.md` changes.
+10. **Connector:** each teammate turns on the Sanity connector in claude.ai (Settings → Connectors)
+    and signs in once.
+
+The skill lists the saved case studies, testimonials and slide formats. If you change
+`lib/types.ts` or `lib/defaults.ts`, update `SKILL.md` to match.
 
 ## Rebranding
 The colours and fonts are tokens at the top of `app/globals.css`. You can override the accent colour
