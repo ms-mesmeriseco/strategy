@@ -15,6 +15,8 @@ export function Deck({ proposal }: { proposal: Proposal }) {
   const total = proposal.slides.length;
   const [current, setCurrent] = useState(0);
   const [ready, setReady] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const nav = useRef<HTMLElement>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
 
   const goTo = useCallback(
@@ -44,6 +46,10 @@ export function Deck({ proposal }: { proposal: Proposal }) {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (e.target instanceof HTMLElement && e.target.closest("input, textarea, select")) return;
+      if (e.key === "Escape" && menuOpen) {
+        setMenuOpen(false);
+        return;
+      }
       if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(e.key)) goTo(current + 1);
       else if (["ArrowLeft", "ArrowUp", "PageUp"].includes(e.key)) goTo(current - 1);
       else if (e.key === "Home") goTo(0);
@@ -53,7 +59,17 @@ export function Deck({ proposal }: { proposal: Proposal }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [current, total, goTo]);
+  }, [current, total, goTo, menuOpen]);
+
+  // Close the contents menu when clicking anywhere else.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onDown = (e: PointerEvent) => {
+      if (!nav.current?.contains(e.target as Node)) setMenuOpen(false);
+    };
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
+  }, [menuOpen]);
 
   const ctx: SlideContext = useMemo(
     () => ({
@@ -63,6 +79,9 @@ export function Deck({ proposal }: { proposal: Proposal }) {
     }),
     [proposal, goTo]
   );
+
+  // The section the current slide sits in, highlighted in the contents menu.
+  const currentSection = ctx.sections.findLast((s) => s.index <= current)?.index;
 
   const style = proposal.accent ? ({ "--accent": proposal.accent } as CSSProperties) : undefined;
 
@@ -98,7 +117,7 @@ export function Deck({ proposal }: { proposal: Proposal }) {
         </section>
       ))}
 
-      <nav className="controls" aria-label="Slide controls">
+      <nav className="controls" aria-label="Slide controls" ref={nav}>
         <button type="button" onClick={() => goTo(current - 1)} disabled={current === 0} aria-label="Previous slide">
           ←
         </button>
@@ -108,9 +127,38 @@ export function Deck({ proposal }: { proposal: Proposal }) {
         <button type="button" onClick={() => goTo(current + 1)} disabled={current === total - 1} aria-label="Next slide">
           →
         </button>
-        <button type="button" className="controls__pdf" onClick={() => window.print()}>
-          Save as PDF
-        </button>
+        {ctx.sections.length > 0 && (
+          <>
+            <button
+              type="button"
+              className="controls__toggle"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-expanded={menuOpen}
+              aria-controls="contents-menu"
+            >
+              Contents
+            </button>
+            {menuOpen && (
+              <ol className="controls__menu" id="contents-menu">
+                {ctx.sections.map((s, i) => (
+                  <li key={s.index}>
+                    <button
+                      type="button"
+                      aria-current={s.index === currentSection ? "true" : undefined}
+                      onClick={() => {
+                        goTo(s.index);
+                        setMenuOpen(false);
+                      }}
+                    >
+                      <span className="controls__n">{String(i + 1).padStart(2, "0")}</span>
+                      {s.title}
+                    </button>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </>
+        )}
       </nav>
     </main>
   );
