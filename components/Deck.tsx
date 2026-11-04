@@ -108,9 +108,6 @@ export function Deck({ proposal }: { proposal: Proposal }) {
         <button type="button" onClick={() => goTo(current + 1)} disabled={current === total - 1} aria-label="Next slide">
           →
         </button>
-        <button type="button" className="controls__pdf" onClick={() => window.print()}>
-          Save as PDF
-        </button>
       </nav>
     </main>
   );

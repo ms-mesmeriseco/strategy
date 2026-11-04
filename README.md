@@ -23,7 +23,7 @@ Commit on a branch, open a pull request, and check the Vercel preview link.
 Once it's merged, the proposal is live at `https://strategy.mesmeriseco.com/<slug>`.
 
 Viewers move between slides with the arrow keys, the on-screen arrows, or by swiping on a phone.
-Each slide has its own link (e.g. `/<slug>#7`), and "Save as PDF" prints one slide per page.
+Each slide has its own link (e.g. `/<slug>#7`).
 
 ## Slide types
 Every proposal is built from these. Most decks use them in roughly this order (see `proposals/_template.ts`).

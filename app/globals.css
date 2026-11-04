@@ -111,8 +111,6 @@ button { font: inherit; color: inherit; }
 }
 .controls button:hover:not(:disabled) { background: var(--panel); }
 .controls button:disabled { opacity: 0.3; cursor: default; }
-.controls .controls__pdf { background: var(--white); color: var(--black); margin-left: 0.25rem; }
-.controls .controls__pdf:hover { background: var(--accent); }
 
 /* ---------- Frame: title + rule, body, logo + year ---------- */
 .frame {
@@ -317,7 +315,6 @@ button { font: inherit; color: inherit; }
   .scale__level { display: grid; gap: 0.5rem; grid-column: 2; }
   .scale__level > * { grid-row: auto; grid-column: auto; }
   .scale__label { text-align: left; }
-  .controls .controls__pdf { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
